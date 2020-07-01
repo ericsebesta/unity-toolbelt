@@ -1,0 +1,15 @@
+{
+    "name": "com.ericsebesta.unitytools.Editor.Tests",
+    "references": [
+        "com.ericsebesta.unitytools.Editor",
+        "com.ericsebesta.unitytools"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

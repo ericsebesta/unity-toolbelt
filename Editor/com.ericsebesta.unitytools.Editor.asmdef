@@ -1,0 +1,12 @@
+{
+    "name": "com.ericsebesta.unitytools.Editor",
+    "references": [
+        "com.ericsebesta.unitytools"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}
