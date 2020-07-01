@@ -13,6 +13,7 @@
 # We develop this package as a submodule of another project as an embedded repo, so git tries to add these as imported files.
 LICENSE.meta
 readme.md.meta
+package.json.meta
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
