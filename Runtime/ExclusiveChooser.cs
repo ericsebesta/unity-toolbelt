@@ -11,6 +11,7 @@ namespace com.ericsebesta.unitytools
     /// </summary>
     /// This class functions along with the help of ExclusiveChooserChild class which this class automatically adds
     /// to all children of this class. The helper class auto-removes itself if reparented.
+    [ExecuteAlways]
     public class ExclusiveChooser : MonoBehaviour
     {
         //The currently chosen child gameobject
