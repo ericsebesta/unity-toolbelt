@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MenuSetup : MonoBehaviour
 {
-    [MenuItem("GameObject/EASTools/ExclusiveChooser")]
+    [MenuItem("GameObject/EASTools/ExclusiveChooser", false, 10)]
     private static void CreateRedBlueGameObject()
     {
         var go = new GameObject ("ExclusiveChooser");
