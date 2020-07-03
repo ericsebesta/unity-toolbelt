@@ -1,1 +1,1 @@
-Eric Sebesta's Unity Tools.
+Unity Toolbelt.
