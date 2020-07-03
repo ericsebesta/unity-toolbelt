@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace com.ericsebesta.unitytools
+namespace com.ericsebesta.toolbelt
 {
     /// <summary>
     /// A runtime-added helper class for ExclusiveChooser. Do not add this manually, ExclusiveChooser adds this as needed to support its behavior.

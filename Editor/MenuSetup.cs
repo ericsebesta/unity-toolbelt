@@ -1,10 +1,10 @@
-﻿using com.ericsebesta.unitytools;
+﻿using com.ericsebesta.toolbelt;
 using UnityEditor;
 using UnityEngine;
 
 public class MenuSetup : MonoBehaviour
 {
-    [MenuItem("GameObject/EASTools/ExclusiveChooser", false, 20)]
+    [MenuItem("GameObject/Toolbelt/ExclusiveChooser", false, 20)]
     private static void CreateRedBlueGameObject()
     {
         var go = new GameObject ("ExclusiveChooser");

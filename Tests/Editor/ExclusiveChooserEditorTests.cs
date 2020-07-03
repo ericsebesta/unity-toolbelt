@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace com.ericsebesta.unitytools.Editor.Tests
+namespace com.ericsebesta.toolbelt.Editor.Tests
 {
     [TestFixture]
     public class ExclusiveChooserEditorTests

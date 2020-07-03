@@ -1,7 +1,7 @@
 {
-    "name": "com.ericsebesta.unitytools.Editor",
+    "name": "com.ericsebesta.toolbelt.Editor",
     "references": [
-        "com.ericsebesta.unitytools"
+        "com.ericsebesta.toolbelt"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [

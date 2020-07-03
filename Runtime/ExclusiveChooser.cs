@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEditor.VersionControl;
 using UnityEngine;
 
-namespace com.ericsebesta.unitytools
+namespace com.ericsebesta.toolbelt
 {
     /// <summary>
     /// A behavior that ensures that exactly 1 (or 0 if no children) gameobjects are active. If at any point more than 1 child

@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.TestTools;
 
-namespace com.ericsebesta.unitytools.Tests
+namespace com.ericsebesta.toolbelt.Tests
 {
     [TestFixture]
     public class ExclusiveChooserTests

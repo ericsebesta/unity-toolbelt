@@ -1,8 +1,8 @@
 {
-    "name": "com.ericsebesta.unitytools.Editor.Tests",
+    "name": "com.ericsebesta.toolbelt.Editor.Tests",
     "references": [
-        "com.ericsebesta.unitytools.Editor",
-        "com.ericsebesta.unitytools"
+        "com.ericsebesta.toolbelt.Editor",
+        "com.ericsebesta.toolbelt"
     ],
     "optionalUnityReferences": [
         "TestAssemblies"
