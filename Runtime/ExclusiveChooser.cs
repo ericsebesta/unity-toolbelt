@@ -1,7 +1,4 @@
-﻿using System;
-using UnityEditor;
-using UnityEditor.VersionControl;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace com.ericsebesta.toolbelt
 {
@@ -15,9 +12,9 @@ namespace com.ericsebesta.toolbelt
     public class ExclusiveChooser : MonoBehaviour
     {
         //The currently chosen child gameobject
-        private GameObject _chosenChild;
+        private GameObject m_chosenChild;
         //Whether we are in the process of choosing an active child or not (necessary to prevent re-entry issues from callbacks).
-        private bool _currentlyChoosing;
+        private bool m_currentlyChoosing;
 
         /// <summary>
         /// When waking up, ensure that only the FIRST active child remains active, disable all others.
@@ -43,9 +40,9 @@ namespace com.ericsebesta.toolbelt
                 if (!child.GetComponent<ExclusiveChooserChild>())
                 {
                     //adding components results in OnActivate called and we don't want to process it like a selection
-                    _currentlyChoosing = true;
+                    m_currentlyChoosing = true;
                     child.gameObject.AddComponent<ExclusiveChooserChild>();
-                    _currentlyChoosing = false;
+                    m_currentlyChoosing = false;
                 }
             }
             //select the first item (null is fine)
@@ -64,13 +61,13 @@ namespace com.ericsebesta.toolbelt
                 if (!child.GetComponent<ExclusiveChooserChild>())
                 {
                     //adding components results in OnActivate called and we don't want to process it like a selection
-                    _currentlyChoosing = true;
+                    m_currentlyChoosing = true;
                     child.gameObject.AddComponent<ExclusiveChooserChild>();
-                    _currentlyChoosing = false;
+                    m_currentlyChoosing = false;
                 }
             }
             //we may have removed the only active child, or we may have added a second active child. Resolve this.
-            ChooseChild(_chosenChild ? _chosenChild : null);
+            ChooseChild(m_chosenChild ? m_chosenChild : null);
         }
 
         /// <summary>
@@ -79,18 +76,19 @@ namespace com.ericsebesta.toolbelt
         /// <param name="go">The gameobject to choose if found as a child. Can be null which means "choose the first child"</param>
         public void ChooseChild(GameObject go)
         {
-            if (_currentlyChoosing)
+            if (m_currentlyChoosing)
                 return;
-            _currentlyChoosing = true;
+            m_currentlyChoosing = true;
             var foundSelection = false;
             for (var i = 0; i < gameObject.transform.childCount; i++)
             {
                 var child = gameObject.transform.GetChild(i);
                 if (go && child == go.transform)
                 {
-                    child.gameObject.SetActive(true);
+                    var childGameObject = child.gameObject; 
+                    childGameObject.SetActive(true);
                     foundSelection = true;
-                    _chosenChild = child.gameObject;
+                    m_chosenChild = childGameObject;
                 }
                 else
                 {
@@ -101,10 +99,11 @@ namespace com.ericsebesta.toolbelt
             if (!foundSelection && gameObject.transform.childCount > 0)
             {
                 var child = gameObject.transform.GetChild(0);
-                child.gameObject.SetActive(true);
-                _chosenChild = child.gameObject;
+                var childGameObject = child.gameObject;
+                childGameObject.SetActive(true);
+                m_chosenChild = childGameObject;
             }
-            _currentlyChoosing = false;
+            m_currentlyChoosing = false;
         }
     }
 }

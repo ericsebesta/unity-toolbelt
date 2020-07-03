@@ -1,10 +1,5 @@
-﻿using System.Collections;
-using System.Dynamic;
-using System.Threading.Tasks;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.TestTools;
 
 namespace com.ericsebesta.toolbelt.Tests
 {
@@ -14,33 +9,33 @@ namespace com.ericsebesta.toolbelt.Tests
         /// <summary>
         /// A trivial GameObject with ExclusiveChooser component, reset for each test
         /// </summary>
-        private GameObject _exclusiveChooser;
+        private GameObject m_exclusiveChooser;
         
         /// <summary>
         /// A trivial GameObject, reset for each test
         /// </summary>
-        private GameObject _child1;
+        private GameObject m_child1;
         
         /// <summary>
         /// A trivial GameObject, reset for each test
         /// </summary>
-        private GameObject _child2;
+        private GameObject m_child2;
 
         [SetUp]
         public void Setup()
         {
-            _exclusiveChooser = new GameObject();
-            _exclusiveChooser.AddComponent<ExclusiveChooser>();
-            _child1 = new GameObject();
-            _child2 = new GameObject();
+            m_exclusiveChooser = new GameObject();
+            m_exclusiveChooser.AddComponent<ExclusiveChooser>();
+            m_child1 = new GameObject();
+            m_child2 = new GameObject();
         }
 
         [TearDown]
         public void Teardown()
         {
-            _exclusiveChooser = null;
-            _child1 = null;
-            _child2 = null;
+            m_exclusiveChooser = null;
+            m_child1 = null;
+            m_child2 = null;
         }
         
         [Test]
@@ -54,54 +49,55 @@ namespace com.ericsebesta.toolbelt.Tests
         [Test]
         public void ExclusiveChooser_With1Child_Child1ActiveAfterAdding()
         {
-            _child1.transform.parent = _exclusiveChooser.transform;
-            Assert.True(_child1.activeSelf, "a singular child of a ExclusiveChooser should be active when added");
+            m_child1.transform.parent = m_exclusiveChooser.transform;
+            Assert.True(m_child1.activeSelf, "a singular child of a ExclusiveChooser should be active when added");
         }
         
         [Test]
         public void ExclusiveChooser_With1Child_Child1HasChildComponentAdded()
         {
-            _child1.transform.parent = _exclusiveChooser.transform;
-            Assert.NotNull(_child1.GetComponent<ExclusiveChooserChild>(), "a singular child of a ExclusiveChooser should be get the ExclusiveChooserChild added when parented to it");
+            m_child1.transform.parent = m_exclusiveChooser.transform;
+            Assert.NotNull(m_child1.GetComponent<ExclusiveChooserChild>(), "a singular child of a ExclusiveChooser should be get the ExclusiveChooserChild added when parented to it");
         }
         
         [Test]
         public void ExclusiveChooser_AddingChild2_Child1ActiveAndChild2Inactive()
         {
-            _child1.transform.parent = _exclusiveChooser.transform;
-            _child2.transform.parent = _exclusiveChooser.transform;
+            m_child1.transform.parent = m_exclusiveChooser.transform;
+            m_child2.transform.parent = m_exclusiveChooser.transform;
             
-            Assert.True(_child1.activeSelf, "a first child of a ExclusiveChooser should be active when a second child is added");
-            Assert.False(_child2.activeSelf, "a second child of a ExclusiveChooser should be inactive when added");
+            Assert.True(m_child1.activeSelf, "a first child of a ExclusiveChooser should be active when a second child is added");
+            Assert.False(m_child2.activeSelf, "a second child of a ExclusiveChooser should be inactive when added");
         }
         
         [Test]
         public void ExclusiveChooser_ActivatingChild2_Child1Inactive()
         {
-            _child1.transform.parent = _exclusiveChooser.transform;
-            _child2.transform.parent = _exclusiveChooser.transform;
+            m_child1.transform.parent = m_exclusiveChooser.transform;
+            m_child2.transform.parent = m_exclusiveChooser.transform;
 
-            _child2.SetActive(true);
+            m_child2.SetActive(true);
 
-            Assert.False(_child1.activeSelf, "a first child of a ExclusiveChooser should be inactive when a second child is activated");
-            Assert.True(_child2.activeSelf, "a second child of a ExclusiveChooser should be active when activated");
+            Assert.False(m_child1.activeSelf, "a first child of a ExclusiveChooser should be inactive when a second child is activated");
+            Assert.True(m_child2.activeSelf, "a second child of a ExclusiveChooser should be active when activated");
         }
         
         [Test]
         public void ExclusiveChooser_ReparentingChild1_Child1Active()
         {
-            _child1.transform.parent = _exclusiveChooser.transform;
-            _child2.transform.parent = _exclusiveChooser.transform;
+            m_child1.transform.parent = m_exclusiveChooser.transform;
+            m_child2.transform.parent = m_exclusiveChooser.transform;
 
-            Assert.False(_child2.activeSelf, "a second child of a ExclusiveChooser should be inactive when a the first is active");
-            _child1.transform.parent = null;
-            Assert.True(_child2.activeSelf, "a second child of a ExclusiveChooser should be active when a second child is reparented away from the ExclusiveChooser");
+            Assert.False(m_child2.activeSelf, "a second child of a ExclusiveChooser should be inactive when a the first is active");
+            // ReSharper disable once Unity.InefficientPropertyAccess
+            m_child1.transform.parent = null;
+            Assert.True(m_child2.activeSelf, "a second child of a ExclusiveChooser should be active when a second child is reparented away from the ExclusiveChooser");
         }
         
         [Test]
         public void ExclusiveChooser_ReparentingChild1LeavingNoChildren_IsOkay()
         {
-            _child1.transform.parent = _exclusiveChooser.transform;
+            m_child1.transform.parent = m_exclusiveChooser.transform;
             //should not cause any exceptions
         }
     }
