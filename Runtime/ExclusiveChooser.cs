@@ -15,6 +15,8 @@ namespace com.ericsebesta.toolbelt
         private GameObject m_chosenChild;
         //Whether we are in the process of choosing an active child or not (necessary to prevent re-entry issues from callbacks).
         private bool m_currentlyChoosing;
+        
+        private GameObject m_reactivationTarget;
 
         /// <summary>
         /// When waking up, ensure that only the FIRST active child remains active, disable all others.
@@ -100,10 +102,20 @@ namespace com.ericsebesta.toolbelt
             {
                 var child = gameObject.transform.GetChild(0);
                 var childGameObject = child.gameObject;
-                childGameObject.SetActive(true);
+                //in this specific situation, we might end up re-activating the first child from within a callstack requesting to DISable it.
+                //directly calling into SetActive will throw and error, so delay the reactivation.
+                m_reactivationTarget = childGameObject;
+                Invoke(nameof(ReActivate), .1f);
                 m_chosenChild = childGameObject;
             }
             m_currentlyChoosing = false;
         }
+
+        private void ReActivate()
+        {
+            m_reactivationTarget.SetActive(true);
+            m_reactivationTarget = null;
+        }
+
     }
 }
