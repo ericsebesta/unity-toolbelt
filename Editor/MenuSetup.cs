@@ -5,7 +5,7 @@ using UnityEngine;
 public class MenuSetup : MonoBehaviour
 {
     [MenuItem("GameObject/Toolbelt/ExclusiveChooser", false, 20)]
-    private static void CreateRedBlueGameObject()
+    private static void CreateExclusiveChooser()
     {
         var go = new GameObject ("ExclusiveChooser");
         go.AddComponent<ExclusiveChooser>();
