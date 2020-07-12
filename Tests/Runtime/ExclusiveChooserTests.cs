@@ -48,7 +48,7 @@ namespace com.ericsebesta.toolbelt.Tests
         {
             //not logic we "own", but confirm that a newly created object is active, since we depend on it so heavily here
             var obj = new GameObject();
-            Assert.True(obj.activeSelf, "a GameObject should be active when created");
+            Assert.False(obj.activeSelf, "a GameObject should be active when created"); //purposefully break a test to validate cloud build test support
             yield return null;
         }
         
