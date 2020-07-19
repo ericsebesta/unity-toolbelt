@@ -49,6 +49,7 @@ namespace com.ericsebesta.toolbelt.Tests
             //not logic we "own", but confirm that a newly created object is active, since we depend on it so heavily here
             var obj = new GameObject();
             Assert.True(obj.activeSelf, "a GameObject should be active when created");
+            LogAssert.NoUnexpectedReceived();
             yield return null;
         }
         
@@ -57,6 +58,7 @@ namespace com.ericsebesta.toolbelt.Tests
         {
             m_child1.transform.parent = m_exclusiveChooser.transform;
             Assert.True(m_child1.activeSelf, "a singular child of a ExclusiveChooser should be active when added");
+            LogAssert.NoUnexpectedReceived();
             yield return null;
         }
         
@@ -65,6 +67,7 @@ namespace com.ericsebesta.toolbelt.Tests
         {
             m_child1.transform.parent = m_exclusiveChooser.transform;
             Assert.NotNull(m_child1.GetComponent<ExclusiveChooserChild>(), "a singular child of a ExclusiveChooser should be get the ExclusiveChooserChild added when parented to it");
+            LogAssert.NoUnexpectedReceived();
             yield return null;
         }
         
@@ -76,6 +79,7 @@ namespace com.ericsebesta.toolbelt.Tests
             
             Assert.True(m_child1.activeSelf, "a first child of a ExclusiveChooser should be active when a second child is added");
             Assert.False(m_child2.activeSelf, "a second child of a ExclusiveChooser should be inactive when added");
+            LogAssert.NoUnexpectedReceived();
             yield return null;
         }
         
@@ -89,6 +93,7 @@ namespace com.ericsebesta.toolbelt.Tests
 
             Assert.False(m_child1.activeSelf, "a first child of a ExclusiveChooser should be inactive when a second child is activated");
             Assert.True(m_child2.activeSelf, "a second child of a ExclusiveChooser should be active when activated");
+            LogAssert.NoUnexpectedReceived();
             yield return null;
         }
         
@@ -102,6 +107,7 @@ namespace com.ericsebesta.toolbelt.Tests
             // ReSharper disable once Unity.InefficientPropertyAccess
             m_child1.transform.parent = null;
             Assert.True(m_child2.activeSelf, "a second child of a ExclusiveChooser should be active when a second child is reparented away from the ExclusiveChooser");
+            LogAssert.NoUnexpectedReceived();
             yield return null;
         }
         
@@ -110,6 +116,7 @@ namespace com.ericsebesta.toolbelt.Tests
         {
             m_child1.transform.parent = m_exclusiveChooser.transform;
             //should not cause any exceptions
+            LogAssert.NoUnexpectedReceived();
             yield return null;
         }
 
@@ -125,6 +132,7 @@ namespace com.ericsebesta.toolbelt.Tests
            yield return new WaitForSeconds(1f);
            //should have reactivated itself
            Assert.IsTrue(m_child1.activeSelf);
+           LogAssert.NoUnexpectedReceived();
            yield return null;
         }
         
@@ -145,6 +153,7 @@ namespace com.ericsebesta.toolbelt.Tests
             //only first child should be active
             Assert.IsTrue(child1.activeSelf);
             Assert.IsFalse(child2.activeSelf);
+            LogAssert.NoUnexpectedReceived();
             yield return null;
         }
         
@@ -166,6 +175,7 @@ namespace com.ericsebesta.toolbelt.Tests
             //only first child should be active
             Assert.IsFalse(child1.activeSelf);
             Assert.IsTrue(child2.activeSelf);
+            LogAssert.NoUnexpectedReceived();
             yield return null;
         }
         
@@ -188,6 +198,7 @@ namespace com.ericsebesta.toolbelt.Tests
             //adding the chooser to the parent should add the child component to all children
             Assert.IsNotNull(child1.GetComponent<ExclusiveChooserChild>());
             Assert.IsNotNull(child2.GetComponent<ExclusiveChooserChild>());
+            LogAssert.NoUnexpectedReceived();
             yield return null;
         }
     }
